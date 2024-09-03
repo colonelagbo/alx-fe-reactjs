@@ -12,6 +12,11 @@ import SearchBar from './components/SearchBar';
 import FavoritesList from './components/FavoritesList';
 import RecommendationsList from './components/RecommendationsList';
 import { useRecipeStore } from './recipeStore';
+import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
+import { Link } from 'react-router-dom';
+import { useRecipeStore } from '../store/recipeStore';
+
 
 
 const App = () => {
@@ -32,13 +37,11 @@ const App = () => {
       <RecipeList />
     </div>
     <Router>
-      <div>
-        <h1>Recipe Sharing App</h1>
-        <Routes>
-          <Route path="/" element={<><AddRecipeForm /><RecipeList /></>} />
-          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
-        </Routes>
-      </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
+      </Routes>
     </Router>
 
     <div>
