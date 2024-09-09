@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import data from '../data.json';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage'; // Assuming HomePage component is in components folder
+import RecipeDetail from './components/RecipeDetail'; // Assuming RecipeDetail component is in components folder
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import RecipeDetail from './components/RecipeDetail';
+
 
 function RecipeDetail() {
   const { id } = useParams();
@@ -14,6 +21,7 @@ function RecipeDetail() {
   if (!recipe) return <div>Loading...</div>;
 
   return (
+
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img src={recipe.image} alt={recipe.title} className="w-full h-64 object-cover" />
@@ -38,3 +46,16 @@ function RecipeDetail() {
 }
 
 export default RecipeDetail;
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
