@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import recipesData from '../data/recipes.json'; // Assume your recipe data is in this file.
+import recipesData from '../data/recipes.json';
 
 function RecipeDetail() {
   const { id } = useParams();
