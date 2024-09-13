@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data.json';
+import { Link } from 'react-router-dom';
+
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
@@ -27,6 +29,11 @@ function HomePage() {
       </div>
     </div>
   );
+  <div className="recipe-card">
+      <h2>{recipe.title}</h2>
+      <img src={recipe.image} alt={recipe.title} />
+      <Link to={`/recipe/${recipe.id}`} className="text-blue-500">View Recipe</Link>
+    </div>
 }
 
 export default HomePage;

@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "title": "Spaghetti Bolognese",
+      "image": "/images/spaghetti.jpg",
+      "ingredients": ["500g spaghetti", "400g ground beef", "1 onion", "2 garlic cloves"],
+      "instructions": ["Boil spaghetti.", "Cook beef.", "Mix with sauce."]
+    },
+    {
+      "id": 2,
+      "title": "Chicken Curry",
+      "image": "/images/chicken-curry.jpg",
+      "ingredients": ["2 chicken breasts", "1 onion", "2 tbsp curry powder", "400ml coconut milk"],
+      "instructions": ["Cook chicken.", "Add curry powder.", "Mix with coconut milk."]
+    }
+  ]
+  
