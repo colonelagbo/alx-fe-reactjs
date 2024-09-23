@@ -1,27 +1,30 @@
+// components/Search.js
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const GITHUB_API_KEY = import.meta.env.VITE_GITHUB_API_KEY;
-
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [username, setUsername] = useState('');
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null);
 
-  const handleSearch = async () => {
-    const config = GITHUB_API_KEY 
-      ? { headers: { Authorization: `token ${GITHUB_API_KEY}` } } 
-      : {};
-
-    try {
-      const response = await axios.get(`https://api.github.com/users/${username}`, config);
-      setUserData(response.data);
-    } catch (error) {
-      setError("Error fetching data");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username) {
+      onSearch(username);
     }
   };
 
-  // rest of your component logic...
+  return (
+    <div className="search-container">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="input"
+        />
+        <button type="submit" className="btn">Search</button>
+      </form>
+    </div>
+  );
 };
 
 export default Search;
