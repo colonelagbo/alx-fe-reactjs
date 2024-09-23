@@ -12,16 +12,17 @@ const Search = () => {
     e.preventDefault();
     if (username) {
       setLoading(true);
-      setError(null);
-      setUserData(null);
+      setError(null);  // Clear previous error
+      setUserData(null);  // Clear previous user data
 
       try {
         const data = await fetchUserData(username);
         setUserData(data);
       } catch (err) {
-        setError('Looks like we can’t find the user.');
+        // Set error message when user is not found or an error occurs
+        setError("Looks like we can't find the user.");
       } finally {
-        setLoading(false);
+        setLoading(false);  // Set loading to false after the API call is done
       }
     }
   };
@@ -40,7 +41,7 @@ const Search = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>}  {/* Display error message */}
       {userData && (
         <div className="user-info">
           <img src={userData.avatar_url} alt={userData.login} className="avatar" />
