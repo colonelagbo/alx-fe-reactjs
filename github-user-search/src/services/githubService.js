@@ -12,7 +12,11 @@ export const fetchAdvancedUserData = async ({ username, location, minRepos }) =>
   if (minRepos) query.push(`repos:>=${minRepos}`);
 
   const queryString = query.join('+');
-  const response = await axios.get(`${BASE_URL}?q=${queryString}`);
+  const url = `${BASE_URL}?q=${queryString}`;
   
+  // Log the constructed URL for debugging
+  console.log("Fetching data from:", url);
+
+  const response = await axios.get(url);
   return response.data; // Return the API data
 };
