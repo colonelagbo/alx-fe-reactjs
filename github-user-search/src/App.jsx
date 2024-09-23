@@ -1,12 +1,12 @@
 import React from 'react';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className="app-container">
       <h1>GitHub User Search</h1>
-      {/* Add components and routing here */}
+      {/* Components like Search will be added here */}
     </div>
   );
-}
+};
 
 export default App;
