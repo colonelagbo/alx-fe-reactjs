@@ -1,4 +1,4 @@
-// components/Search.js
+// src/components/Search.jsx
 import React, { useState } from 'react';
 
 const Search = ({ onSearch }) => {
