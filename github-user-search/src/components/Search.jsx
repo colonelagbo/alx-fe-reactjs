@@ -1,13 +1,28 @@
 // src/components/Search.jsx
 import React, { useState } from 'react';
+import { fetchUserData } from '../services/githubService';
 
-const Search = ({ onSearch }) => {
+const Search = () => {
   const [username, setUsername] = useState('');
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (username) {
-      onSearch(username);
+      setLoading(true);
+      setError(null);
+      setUserData(null);
+
+      try {
+        const data = await fetchUserData(username);
+        setUserData(data);
+      } catch (err) {
+        setError('Looks like we can’t find the user.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -23,6 +38,18 @@ const Search = ({ onSearch }) => {
         />
         <button type="submit" className="btn">Search</button>
       </form>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {userData && (
+        <div className="user-info">
+          <img src={userData.avatar_url} alt={userData.login} className="avatar" />
+          <h2>{userData.name || 'No Name Available'}</h2>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
     </div>
   );
 };
